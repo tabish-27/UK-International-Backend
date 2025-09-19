@@ -8,7 +8,10 @@ require('./config/db');
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'https://ukinternationalbeautyschool.com' }));
+app.use(cors({
+  origin: ["https://ukinternationalbeautyschool.com", "http://localhost:5173"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
