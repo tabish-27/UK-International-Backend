@@ -21,9 +21,10 @@ exports.submitEnquiry = async (req, res) => {
     const lead = new Lead({ name, phone, city, course, source });
     await lead.save();
 
-    // WhatsApp message via Interakt.ai
+    // WhatsApp message via Interakt.ai - CORRECTED
     const interaktUrl = 'https://api.interakt.ai/v1/public/message/';
     await axios.post(interaktUrl, {
+      type: 'Template', // This field was missing and caused the error
       phoneNumber: phone,
       template: { name: 'uk_international_welcome_', language: { code: 'en' }, components: [] },
       from: '8181891914',
